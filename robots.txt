@@ -1,0 +1,6 @@
+# robots.txt — Bloquea la política de privacidad y apunta al sitemap.
+User-agent: *
+Disallow: /politica-de-privacidad.html
+
+# Sitemap del sitio
+Sitemap: https://aivradigital.com/sitemap.xml

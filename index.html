@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Desarrollo páginas web, aplicaciones y automatizaciones con un enfoque práctico y honesto. Aprender, construir criterio y resolver problemas reales es parte de mi proceso.">
+    <meta name="author" content="Sebastián Sanmartín">
+    <title>Páginas Web y Automatización para Negocios | Sebastián Sanmartín</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLES Y CONFIGURACIÓN --- */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #475569;
+            --accent-color: #06b6d4;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --gradient-main: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR MEJORADO --- */
+        .navbar-gradient {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand .brand-icon {
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin-left: 15px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .navbar-decoration {
+            height: 4px;
+            background: var(--gradient-main);
+            width: 100%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.05), transparent 40%);
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        .text-gradient {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bg-primary-gradient {
+            background: var(--gradient-main);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        .btn-hover {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
+        }
+
+        /* --- ANIMACIÓN FLOTANTE (CÓDIGO QUE FALTABA) --- */
+        .floating-box {
+            position: relative;
+            height: 400px;
+        }
+
+        .animated-background {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.1));
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: pulse 6s infinite alternate;
+        }
+
+        .icon-circle {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-color);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* --- PROFILE IMAGE STYLES --- */
+        .profile-image-container {
+            position: relative;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .profile-image-bg {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-main);
+            border-radius: 20px;
+            z-index: 0;
+            opacity: 0.2;
+        }
+
+        .profile-image {
+            position: relative;
+            z-index: 1;
+            border: 5px solid white;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.02);
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: white;
+            padding: 12px 18px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-badge i {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .badge-1 {
+            top: 15%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .badge-2 {
+            top: 50%;
+            right: -10%;
+            animation-delay: 2s;
+        }
+
+        .badge-3 {
+            bottom: 10%;
+            left: 5%;
+            animation-delay: 4s;
+        }
+
+        .floating-item {
+            position: absolute;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            z-index: 3;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-item i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .float-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .float-2 { top: 60%; right: 10%; animation-delay: 2s; }
+        .float-3 { top: 10%; right: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* --- CARDS & SERVICES --- */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Degradados sutiles en bordes de cards */
+        .card-gradient-1 { border-top: 4px solid #2563eb; }
+        .card-gradient-2 { border-top: 4px solid #10b981; }
+        .card-gradient-3 { border-top: 4px solid #06b6d4; }
+        .card-gradient-4 { border-top: 4px solid #eab308; }
+        .card-gradient-5 { border-top: 4px solid #ef4444; }
+        .card-gradient-6 { border-top: 4px solid #6b7280; }
+        .bg-gradient-learn { 
+            background: linear-gradient(to right, #ffffff, #f0f9ff); 
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-item {
+            background: #f1f5f9;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* --- BELIEFS SECTION --- */
+        .belief-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
+        .belief-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        .belief-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        /* --- CONTACT CARDS --- */
+        .contact-card {
+            transition: transform 0.3s;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+        .contact-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+        }
+        .bg-gradient-1 { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+        .bg-gradient-2 { background: linear-gradient(90deg, #10b981, #34d399); }
+        .bg-gradient-3 { background: linear-gradient(90deg, #1f2937, #4b5563); }
+        .bg-gradient-4 { background: linear-gradient(90deg, #0a66c2, #38bdf8); }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #f8fafc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 991px) {
+            .hero-title { font-size: 2.5rem; }
+            .floating-box { height: 300px; margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-gradient">
+        <div class="container-fluid px-lg-5">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#inicio">
+                <span class="brand-icon"><i class="fas fa-code"></i></span>
+                <span class="brand-text">Sebastián Sanmartín</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre-mi" data-es="Sobre mí" data-en="About Me">Sobre mí</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#problemas" data-es="Problemas" data-en="Problems">Problemas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#que-hago" data-es="Servicios" data-en="Services">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experiencia" data-es="Experiencia" data-en="Experience">Experiencia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
+                    <li class="nav-item ms-2">
+                        <div class="btn-group" role="group" aria-label="Language selector">
+                            <button type="button" class="btn btn-sm btn-outline-light lang-btn active" data-lang="es" id="lang-es">ES</button>
+                            <button type="button" class="btn btn-sm btn-outline-light lang-btn" data-lang="en" id="lang-en">EN</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="navbar-decoration"></div>
+
+    <section id="inicio" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <div class="hero-content">
+                        <div class="hero-badge mb-3">
+                            <span class="bg-primary-gradient" data-es="Desarrollador & Automatizador" data-en="Developer & Automator">
+                                <i class="fas fa-sparkles me-2"></i><span class="translate">Desarrollador & Automatizador</span>
+                            </span>
+                        </div>
+
+                        <h1 class="display-3 fw-bold mb-4 hero-title">
+                            <span class="text-gradient" data-es="Páginas web y automatizaciones" data-en="Web pages and automation">Páginas web y automatizaciones</span><br>
+                            <span class="translate" data-es="para negocios que quieren más clientes" data-en="for businesses that want more customers">para negocios que quieren más clientes</span>
+                        </h1>
+                        <p class="lead mb-4 text-secondary"><span class="translate" data-es="Diseño sitios web funcionales y automatizo procesos para que tu negocio gane " data-en="I design functional websites and automate processes so your business gains ">Diseño sitios web funcionales y automatizo procesos para que tu negocio gane </span><strong><span class="translate" data-es="visibilidad, ahorre tiempo y atraiga más personas" data-en="visibility, save time and attract more people">visibilidad, ahorre tiempo y atraiga más personas</span></strong>.</p>
+                        <p class="fw-bold text-muted mb-4"><i class="fas fa-user me-2"></i>Sebastián Sanmartín – <span class="translate" data-es="Desarrollador" data-en="Developer">Desarrollador</span></p>
+                        
+                        <div class="card border-0 bg-white shadow-lg mb-5 card-intro" style="border-left: 4px solid var(--accent-color) !important;">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-start mb-3">
+                                    <i class="fas fa-graduation-cap text-success me-3 mt-1 fs-5"></i>
+                                    <p class="mb-0 small"><strong><span class="translate" data-es="Formación en Ingeniería en Sistemas" data-en="Education in Systems Engineering">Formación en Ingeniería en Sistemas</span></strong> <span class="translate" data-es="con enfoque práctico en proyectos reales" data-en="with a practical approach to real projects">con enfoque práctico en proyectos reales</span></p>
+                                </div>
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-lightbulb text-warning me-3 mt-1 fs-5"></i>
+                                    <p class="mb-0 small">"<span class="translate" data-es="Trabajo honesto, soluciones simples, " data-en="Honest work, simple solutions, ">Trabajo honesto, soluciones simples, </span><strong><span class="translate" data-es="resultados medibles" data-en="measurable results">resultados medibles</span></strong>."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 flex-wrap mb-5">
+                            <a href="#contacto" class="btn btn-primary btn-lg btn-hover px-4 rounded-pill">
+                                <span class="translate" data-es="Cuéntame tu proyecto" data-en="Tell me your project">Cuéntame tu proyecto</span> <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                            <a href="#para-quien" class="btn btn-outline-primary btn-lg btn-hover px-4 rounded-pill">
+                                <span class="translate" data-es="¿Es para mí?" data-en="Is it for me?">¿Es para mí?</span>
+                            </a>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 opacity-75">
+                            <small class="fw-bold text-muted">Tech Stack:</small>
+                            <i class="fab fa-python fs-4 text-secondary" title="Python"></i>
+                            <i class="fab fa-js fs-4 text-secondary" title="JavaScript"></i>
+                            <i class="fas fa-database fs-4 text-secondary" title="MySQL / SQLite"></i>
+                            <i class="fas fa-robot fs-4 text-secondary" title="Automatización"></i>
+                            <i class="fab fa-git-alt fs-4 text-secondary" title="Git"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 text-center d-none d-lg-block">
+                    <div class="profile-image-container">
+                        <div class="profile-image-bg"></div>
+                        <img src="assets/sebastian_sanmartin.jpg" alt="Sebastián Sanmartín" class="profile-image img-fluid rounded-4 shadow-lg">
+                        <div class="floating-badge badge-1">
+                            <i class="fas fa-code"></i>
+                            <span>Web Dev</span>
+                        </div>
+                        <div class="floating-badge badge-2">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Apps</span>
+                        </div>
+                        <div class="floating-badge badge-3">
+                            <i class="fas fa-robot"></i>
+                            <span>Automatización</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-mi" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary-gradient mb-3">Sobre mí</span>
+                <h2 class="display-5 fw-bold mb-3">
+                    Soy <span class="text-gradient">más que un desarrollador</span>
+                </h2>
+                <p class="lead text-muted">Estudiante de Ingeniería en Sistemas con experiencia real en proyectos para empresa privada.</p>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover text-center p-4">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mx-auto mb-3">
+                            <i class="fas fa-code fs-4"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Desarrollador</h5>
+                        <p class="text-muted small mb-0">Sistemas, páginas web y APIs para automatizar y hacer crecer negocios.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover text-center p-4">
+                        <div class="icon-box bg-success bg-opacity-10 text-success mx-auto mb-3">
+                            <i class="fas fa-hashtag fs-4"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Community Manager</h5>
+                        <p class="text-muted small mb-0">Estrategia de contenido, gestión de redes sociales y crecimiento digital.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover text-center p-4">
+                        <div class="icon-box bg-warning bg-opacity-10 text-warning mx-auto mb-3">
+                            <i class="fas fa-video fs-4"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Editor de Video</h5>
+                        <p class="text-muted small mb-0">Producción profesional con DaVinci Resolve, After Effects y Filmora.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover text-center p-4">
+                        <div class="icon-box bg-danger bg-opacity-10 text-danger mx-auto mb-3">
+                            <i class="fas fa-camera fs-4"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Fotografía & Contenido</h5>
+                        <p class="text-muted small mb-0">Creación de contenido visual que comunica y genera impacto en la audiencia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column gap-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="icon-box bg-primary bg-opacity-10 text-primary">
+                                    <i class="fas fa-brain fs-4"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="fw-bold">🧠 Analizo problemas</h5>
+                                <p class="text-muted mb-0">Entiendo el fondo de cada problema antes de escribir una sola línea de código. La solución correcta empieza con las preguntas correctas.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="icon-box bg-success bg-opacity-10 text-success">
+                                    <i class="fas fa-cogs fs-4"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="fw-bold">⚙️ Automatizo procesos</h5>
+                                <p class="text-muted mb-0">Trabajo tanto con código como con herramientas no-code para lograr resultados rápidos y eficientes.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="icon-box bg-info bg-opacity-10 text-info">
+                                    <i class="fas fa-chart-line fs-4"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="fw-bold">📈 Optimizo negocios</h5>
+                                <p class="text-muted mb-0">He trabajado en proyectos reales para empresa privada combinando tecnología + marketing + contenido.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="card-body p-5 bg-white text-center">
+                            <i class="fas fa-quote-left text-primary opacity-25 display-1 mb-3"></i>
+                            <h4 class="fw-light fst-italic mb-4">"No se trata de programar… se trata de crear soluciones que <strong>generen impacto</strong>."</h4>
+                            <div class="d-flex justify-content-center align-items-center gap-3">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <span class="fw-bold">S</span>
+                                </div>
+                                <div class="text-start">
+                                    <h6 class="mb-0 fw-bold">Sebastián Sanmartín</h6>
+                                    <small class="text-muted">Desarrollador & Automatizador</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: PROBLEMAS QUE SOLUCIONO -->
+    <section id="problemas" class="py-5" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge mb-3" style="background: rgba(255,255,255,0.15); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem;">🚨 Problemas que soluciono</span>
+                <h2 class="display-5 fw-bold text-white mb-3">¿Tu negocio tiene alguno de <span style="background: linear-gradient(135deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">estos problemas?</span></h2>
+                <p class="text-white-50">Si respondes sí a alguno, puedo ayudarte.</p>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="p-4 rounded-4 h-100" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <h4 class="text-white fw-bold mb-4"><i class="fas fa-times-circle text-danger me-2"></i>Lo que pasa ahora</h4>
+                        <div class="d-flex flex-column gap-3">
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">Usas papel o Excel desordenado para llevar tu negocio</p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">Procesos manuales lentos que quitan tiempo valioso</p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">No hay control claro en ventas, reservas o clientes</p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">Redes sociales sin estrategia y sin crecimiento real</p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">No tienes presencia digital o tu web está desactualizada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4 rounded-4 h-100" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);">
+                        <h4 class="text-white fw-bold mb-4"><i class="fas fa-check-circle text-success me-2"></i>Lo que implemento</h4>
+                        <div class="d-flex flex-column gap-3">
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">Sistemas que organizan todo tu negocio en un solo lugar</p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">Automatizo tareas repetitivas para que te enfoque en vender</p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">Digitalizo tu negocio con herramientas modernas y fáciles de usar</p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">Mejoro tu presencia digital con estrategia y contenido real</p>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                                <p class="text-white-50 mb-0">Páginas web y sistemas que generan confianza y atraen clientes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#contacto" class="btn btn-lg px-5 py-3 fw-bold" style="background: linear-gradient(135deg, #06b6d4, #2563eb); color: white; border-radius: 50px; border: none; box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);">
+                    <i class="fas fa-rocket me-2"></i>Quiero una solución para mi negocio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: ¿PARA QUIÉN ES ESTO? -->
+    <section id="para-quien" class="py-5 bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mb-5">
+                    <span class="badge bg-primary-gradient mb-3 translate" data-es="Cliente Ideal" data-en="Ideal Client">Cliente Ideal</span>
+                    <h2 class="display-5 fw-bold mb-4"><span class="translate" data-es="¿A quién ayudo?" data-en="Who do I help?">¿A quién ayudo?</span></h2>
+                    <p class="lead text-muted"><span class="translate" data-es="Si te identificas con alguno de estos perfiles, podemos trabajar juntos" data-en="If you identify with any of these profiles, we can work together">Si te identificas con alguno de estos perfiles, podemos trabajar juntos</span></p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm card-hover">
+                        <div class="card-body p-4 text-center">
+                            <div class="icon-box bg-primary bg-opacity-10 text-primary mx-auto mb-3">
+                                <i class="fas fa-rocket fs-3"></i>
+                            </div>
+                            <h5 class="fw-bold mb-3"><span class="translate" data-es="Emprendedores" data-en="Entrepreneurs">Emprendedores</span></h5>
+                            <p class="text-muted small mb-0"><span class="translate" data-es="Que necesitan presencia online profesional para empezar a captar clientes sin gastar fortunas." data-en="Who need professional online presence to start attracting clients without spending fortunes.">Que necesitan presencia online profesional para empezar a captar clientes sin gastar fortunas.</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm card-hover">
+                        <div class="card-body p-4 text-center">
+                            <div class="icon-box bg-success bg-opacity-10 text-success mx-auto mb-3">
+                                <i class="fas fa-store fs-3"></i>
+                            </div>
+                            <h5 class="fw-bold mb-3"><span class="translate" data-es="Negocios Locales" data-en="Local Businesses">Negocios Locales</span></h5>
+                            <p class="text-muted small mb-0"><span class="translate" data-es="Que quieren atraer más clientes mediante internet y diferenciarse de la competencia." data-en="That want to attract more clients through the internet and differentiate themselves from the competition.">Que quieren atraer más clientes mediante internet y diferenciarse de la competencia.</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm card-hover">
+                        <div class="card-body p-4 text-center">
+                            <div class="icon-box bg-warning bg-opacity-10 text-warning mx-auto mb-3">
+                                <i class="fas fa-clock fs-3"></i>
+                            </div>
+                            <h5 class="fw-bold mb-3"><span class="translate" data-es="Personas Ocupadas" data-en="Busy People">Personas Ocupadas</span></h5>
+                            <p class="text-muted small mb-0"><span class="translate" data-es="Que pierden tiempo en tareas repetitivas y necesitan automatizar procesos para ser más eficientes." data-en="Who waste time on repetitive tasks and need to automate processes to be more efficient.">Que pierden tiempo en tareas repetitivas y necesitan automatizar procesos para ser más eficientes.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <div class="card border-0 shadow-sm bg-gradient-learn p-4">
+                        <p class="mb-3 fw-bold text-dark"><i class="fas fa-info-circle text-primary me-2"></i><span class="translate" data-es="Mi enfoque de trabajo" data-en="My work approach">Mi enfoque de trabajo</span></p>
+                        <p class="text-muted small mb-0"><span class="translate" data-es="Trabajo con " data-en="I work with ">Trabajo con </span><strong><span class="translate" data-es="transparencia y honestidad" data-en="transparency and honesty">transparencia y honestidad</span></strong><span class="translate" data-es=". Te diré qué necesitas realmente, no lo que quieres escuchar. Soluciones simples, funcionales y sin vender humo." data-en=". I'll tell you what you really need, not what you want to hear. Simple, functional solutions without selling smoke.">. Te diré qué necesitas realmente, no lo que quieres escuchar. Soluciones simples, funcionales y sin vender humo.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="que-hago" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary-gradient mb-2 translate" data-es="Servicios" data-en="Services">Servicios</span>
+                <h2 class="display-5 fw-bold"><span class="translate" data-es="Servicios digitales para hacer crecer tu negocio en internet" data-en="Digital services to grow your business on the internet">Servicios digitales para hacer crecer tu negocio en internet</span></h2>
+                <p class="text-muted translate" data-es="Soluciones prácticas enfocadas en resultados reales" data-en="Practical solutions focused on real results">Soluciones prácticas enfocadas en resultados reales</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- DESARROLLO WEB -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover card-gradient-1">
+                        <div class="card-body p-4">
+                            <div class="icon-box bg-primary bg-opacity-10 mb-4">
+                                <i class="fas fa-code text-primary fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3"><i class="fas fa-code me-2 text-primary"></i><span class="translate" data-es="Páginas Web que Convierten" data-en="Web Pages That Convert">Páginas Web que Convierten</span></h4>
+                            <p class="text-muted small mb-3"><span class="translate" data-es="Sitios web pensados para mostrar tu negocio, generar confianza y convertir visitas en contactos reales." data-en="Websites designed to showcase your business, build trust and convert visits into real contacts.">Sitios web pensados para mostrar tu negocio, generar confianza y convertir visitas en contactos reales.</span></p>
+                            <ul class="list-unstyled text-muted small">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i><span class="translate" data-es="Landing pages para captar clientes" data-en="Landing pages to capture clients">Landing pages para captar clientes</span></li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i><span class="translate" data-es="Sitios web corporativos profesionales" data-en="Professional corporate websites">Sitios web corporativos profesionales</span></li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i><span class="translate" data-es="Tiendas online funcionales" data-en="Functional online stores">Tiendas online funcionales</span></li>
+                            </ul>
+                            <p class="text-muted small mt-3 mb-0"><strong><span class="translate" data-es="Stack Frontend:" data-en="Frontend Stack:">Stack Frontend:</span></strong></p>
+                            <div class="tech-grid mt-2">
+                                <span class="badge bg-light text-dark">HTML/CSS</span>
+                                <span class="badge bg-light text-dark">JavaScript</span>
+                                <span class="badge bg-light text-dark">TypeScript</span>
+                                <span class="badge bg-light text-dark">React</span>
+                                <span class="badge bg-light text-dark">Angular</span>
+                                <span class="badge bg-light text-dark">jQuery</span>
+                                <span class="badge bg-light text-dark">AJAX</span>
+                                <span class="badge bg-light text-dark">Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BACKEND Y BASES DE DATOS -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover card-gradient-2">
+                        <div class="card-body p-4">
+                            <div class="icon-box bg-success bg-opacity-10 mb-4">
+                                <i class="fas fa-server text-success fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3"><i class="fas fa-server me-2 text-success"></i><span class="translate" data-es="Sistemas Robustos" data-en="Robust Systems">Sistemas Robustos</span></h4>
+                            <p class="text-muted small mb-3"><span class="translate" data-es="Desarrollo de la estructura técnica que hace funcionar tu negocio de manera confiable y segura." data-en="Development of the technical structure that makes your business work reliably and securely.">Desarrollo de la estructura técnica que hace funcionar tu negocio de manera confiable y segura.</span></p>
+                            <p class="text-muted small mb-2"><strong><span class="translate" data-es="Stack técnico:" data-en="Technical stack:">Stack técnico:</span></strong></p>
+                            <div class="tech-grid">
+                                <span class="badge bg-light text-dark">PHP</span>
+                                <span class="badge bg-light text-dark">Python</span>
+                                <span class="badge bg-light text-dark">Flask</span>
+                                <span class="badge bg-light text-dark">Django</span>
+                                <span class="badge bg-light text-dark">MySQL</span>
+                                <span class="badge bg-light text-dark">SQL</span>
+                                <span class="badge bg-light text-dark">Laragon</span>
+                                <span class="badge bg-light text-dark">Git</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- APLICACIONES MÓVILES -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover card-gradient-3">
+                        <div class="card-body p-4">
+                            <div class="icon-box bg-info bg-opacity-10 mb-4">
+                                <i class="fas fa-mobile-alt text-info fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3"><i class="fas fa-mobile-alt me-2 text-info"></i><span class="translate" data-es="Aplicaciones Móviles" data-en="Mobile Applications">Aplicaciones Móviles</span></h4>
+                            <p class="text-muted small mb-3"><span class="translate" data-es="Apps personalizadas para que tus clientes te lleven en el bolsillo y puedan interactuar con tu negocio en cualquier momento." data-en="Customized apps so your clients have you in their pocket and can interact with your business anytime.">Apps personalizadas para que tus clientes te lleven en el bolsillo y puedan interactuar con tu negocio en cualquier momento.</span></p>
+                            <p class="text-muted small mb-2"><strong><span class="translate" data-es="Tecnologías:" data-en="Technologies:">Tecnologías:</span></strong></p>
+                            <div class="tech-grid">
+                                <span class="badge bg-light text-dark">React Native</span>
+                                <span class="badge bg-light text-dark">Flutter</span>
+                                <span class="badge bg-light text-dark">Kotlin</span>
+                                <span class="badge bg-light text-dark">Android</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AUTOMATIZACIÓN E INTEGRACIÓN -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover card-gradient-4">
+                        <div class="card-body p-4">
+                            <div class="icon-box bg-warning bg-opacity-10 mb-4">
+                                <i class="fas fa-sync-alt text-warning fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3"><i class="fas fa-sync-alt me-2 text-warning"></i><span class="translate" data-es="Automatización de Procesos" data-en="Process Automation">Automatización de Procesos</span></h4>
+                            <p class="text-muted small mb-3"><span class="translate" data-es="Automatizo tareas repetitivas para que pierdas menos tiempo y puedas enfocarte en vender o atender clientes." data-en="I automate repetitive tasks so you waste less time and can focus on selling or serving customers.">Automatizo tareas repetitivas para que pierdas menos tiempo y puedas enfocarte en vender o atender clientes.</span></p>
+                            <p class="text-muted small mb-2"><strong><span class="translate" data-es="Herramientas:" data-en="Tools:">Herramientas:</span></strong></p>
+                            <div class="tech-grid">
+                                <span class="badge bg-light text-dark">n8n</span>
+                                <span class="badge bg-light text-dark">Make</span>
+                                <span class="badge bg-light text-dark">APIs REST</span>
+                                <span class="badge bg-light text-dark">Webhooks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DISEÑO Y MULTIMEDIA -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover card-gradient-5">
+                        <div class="card-body p-4">
+                            <div class="icon-box bg-danger bg-opacity-10 mb-4">
+                                <i class="fas fa-palette text-danger fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3"><i class="fas fa-palette me-2 text-danger"></i><span class="translate" data-es="Diseño & Contenido Visual" data-en="Design & Visual Content">Diseño & Contenido Visual</span></h4>
+                            <p class="text-muted small mb-3"><span class="translate" data-es="Creación de contenido visual atractivo para redes sociales, campañas y marca profesional." data-en="Creation of attractive visual content for social media, campaigns and professional branding.">Creación de contenido visual atractivo para redes sociales, campañas y marca profesional.</span></p>
+                            <p class="text-muted small mb-2"><strong><span class="translate" data-es="Especialidades:" data-en="Specialties:">Especialidades:</span></strong></p>
+                            <div class="tech-grid">
+                                <span class="badge bg-light text-dark">Filmora</span>
+                                <span class="badge bg-light text-dark">CapCut</span>
+                                <span class="badge bg-light text-dark">DaVinci Resolve</span>
+                                <span class="badge bg-light text-dark">After Effects</span>
+                                <span class="badge bg-light text-dark">Logos/Isologos</span>
+                                <span class="badge bg-light text-dark">Miniaturas YT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CIENCIA E INGENIERÍA -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover card-gradient-6">
+                        <div class="card-body p-4">
+                            <div class="icon-box bg-secondary bg-opacity-10 mb-4">
+                                <i class="fas fa-flask text-secondary fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3"><i class="fas fa-chart-bar me-2 text-secondary"></i><span class="translate" data-es="Ciencia & Análisis" data-en="Science & Analysis">Ciencia & Análisis</span></h4>
+                            <p class="text-muted small mb-3"><span class="translate" data-es="Herramientas técnicas:" data-en="Technical tools:">Herramientas técnicas:</span></p>
+                            <div class="tech-grid">
+                                <span class="badge bg-light text-dark">MATLAB</span>
+                                <span class="badge bg-light text-dark"><span class="translate" data-es="Análisis Datos" data-en="Data Analysis">Análisis Datos</span></span>
+                                <span class="badge bg-light text-dark">GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EN APRENDIZAJE -->
+                <div class="col-lg-12">
+                    <div class="card h-100 border-0 shadow-sm card-hover bg-gradient-learn">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="icon-box bg-dark text-white me-3">
+                                    <i class="fas fa-brain fs-4"></i>
+                                </div>
+                                <h5 class="fw-bold mb-0"><i class="fas fa-rocket me-2 text-primary"></i><span class="translate" data-es="En Aprendizaje Continuo" data-en="Continuous Learning">En Aprendizaje Continuo</span></h5>
+                            </div>
+                            <p class="text-muted small"><span class="translate" data-es="Actualmente profundizando en:" data-en="Currently deepening in:">Actualmente profundizando en:</span></p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-light text-dark border"><i class="fas fa-arrow-right me-2 text-primary"></i><span class="translate" data-es="Backend Avanzado" data-en="Advanced Backend">Backend Avanzado</span></span>
+                                <span class="badge bg-light text-dark border"><i class="fas fa-arrow-right me-2 text-primary"></i><span class="translate" data-es="Ciberseguridad" data-en="Cybersecurity">Ciberseguridad</span></span>
+                                <span class="badge bg-light text-dark border"><i class="fas fa-arrow-right me-2 text-primary"></i><span class="translate" data-es="Metodologías Ágiles" data-en="Agile Methodologies">Metodologías Ágiles</span></span>
+                                <span class="badge bg-light text-dark border"><i class="fas fa-arrow-right me-2 text-primary"></i><span class="translate" data-es="Arquitectura de sistemas" data-en="Systems Architecture">Arquitectura de sistemas</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: EXPERIENCIA -->
+    <section id="experiencia" class="py-5" style="background: linear-gradient(135deg, #f8fafc 0%, #e8f4ff 100%);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary-gradient mb-3">💼 Experiencia</span>
+                <h2 class="display-5 fw-bold mb-3">Mi trayectoria real</h2>
+                <p class="text-muted">Proyectos, logros y experiencias que me han formado.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover" style="border-left: 4px solid #2563eb !important; border-radius: 16px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-box bg-primary bg-opacity-10 text-primary me-3" style="width: 50px; height: 50px; border-radius: 12px;">
+                                    <i class="fas fa-graduation-cap fs-5"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-0">Proyectos universitarios</h5>
+                                    <small class="text-muted">Ingeniería en Sistemas</small>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0">Desarrollo de sistemas completos para proyectos académicos, aplicando metodologías reales de ingeniería y arquitectura de software.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover" style="border-left: 4px solid #10b981 !important; border-radius: 16px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-box bg-success bg-opacity-10 text-success me-3" style="width: 50px; height: 50px; border-radius: 12px;">
+                                    <i class="fas fa-microphone fs-5"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-0">Ponencias técnicas</h5>
+                                    <small class="text-muted">Expositor</small>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0">Participación como ponente en eventos técnicos, presentando soluciones y conocimientos a comunidades de tecnología y emprendimiento.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover" style="border-left: 4px solid #8b5cf6 !important; border-radius: 16px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-box me-3" style="width: 50px; height: 50px; border-radius: 12px; background: rgba(139,92,246,0.1);">
+                                    <i class="fas fa-building fs-5" style="color: #8b5cf6;"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-0">Empresa privada</h5>
+                                    <small class="text-muted">Proyecto confidencial</small>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0">Desarrollo de soluciones digitales completas para empresa privada: sistema personalizado + gestión de redes sociales + contenido digital integrado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm card-hover" style="border-left: 4px solid #f59e0b !important; border-radius: 16px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-box bg-warning bg-opacity-10 text-warning me-3" style="width: 50px; height: 50px; border-radius: 12px;">
+                                    <i class="fas fa-globe fs-5"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-0">Páginas web y sistemas</h5>
+                                    <small class="text-muted">Freelance</small>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0">Creación de páginas web y sistemas personalizados, automatización de procesos y soluciones digitales para negocios de distintos sectores.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm card-hover text-center p-4">
+                        <i class="fas fa-robot fs-2 text-primary mb-3"></i>
+                        <h6 class="fw-bold">Automatización</h6>
+                        <p class="text-muted small mb-0">Procesos automatizados con Python, APIs REST y herramientas No-Code.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm card-hover text-center p-4">
+                        <i class="fas fa-hashtag fs-2 text-success mb-3"></i>
+                        <h6 class="fw-bold">Community Manager</h6>
+                        <p class="text-muted small mb-0">Gestión de redes sociales con estrategia de crecimiento y contenido orgánico.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm card-hover text-center p-4">
+                        <i class="fas fa-film fs-2 text-warning mb-3"></i>
+                        <h6 class="fw-bold">Video & Fotografía</h6>
+                        <p class="text-muted small mb-0">Edición profesional y producción de contenido visual de alto impacto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="en-que-creo" class="py-5 bg-dark text-white position-relative overflow-hidden">
+        <div style="position: absolute; top: -50px; right: -50px; width: 400px; height: 400px; background: var(--primary-color); filter: blur(150px); opacity: 0.2;"></div>
+        <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; background: #06b6d4; filter: blur(150px); opacity: 0.15;"></div>
+        
+        <div class="container position-relative z-2">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <span class="badge mb-3" style="background: rgba(255,255,255,0.15); color: white; padding: 8px 16px; border-radius: 20px;">Mi enfoque</span>
+                    <h2 class="display-5 fw-bold">En qué creo</h2>
+                    <p class="text-white-50">Principios que guían cada proyecto que hago</p>
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-4 rounded-4 h-100 text-center" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;">
+                        <div class="mb-3" style="font-size: 2.5rem;">🎯</div>
+                        <h5 class="fw-bold text-white mb-2">Resultados reales</h5>
+                        <p class="text-white-50 m-0 small">No hago proyectos solo por hacerlos. Busco que cada sistema resuelva un problema real y genere valor.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-4 rounded-4 h-100 text-center" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;">
+                        <div class="mb-3" style="font-size: 2.5rem;">⚙️</div>
+                        <h5 class="fw-bold text-white mb-2">Fácil de usar</h5>
+                        <p class="text-white-50 m-0 small">La mejor solución es la que el cliente puede usar sin necesitar un manual de 50 páginas.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-4 rounded-4 h-100 text-center" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;">
+                        <div class="mb-3" style="font-size: 2.5rem;">📈</div>
+                        <h5 class="fw-bold text-white mb-2">Crecimiento</h5>
+                        <p class="text-white-50 m-0 small">Cada proyecto debe ayudar al negocio a crecer: más clientes, más control, más eficiencia.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-4 rounded-4 h-100 text-center" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;">
+                        <div class="mb-3" style="font-size: 2.5rem;">⚡</div>
+                        <h5 class="fw-bold text-white mb-2">Adaptabilidad</h5>
+                        <p class="text-white-50 m-0 small">Me adapto rápidamente a cualquier tecnología necesaria. El objetivo manda, las herramientas se aprenden.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <div class="p-4 rounded-4" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); max-width: 700px; margin: 0 auto;">
+                        <i class="fas fa-quote-left text-primary opacity-50 fs-2 mb-3 d-block"></i>
+                        <h4 class="fw-light fst-italic text-white mb-3">"No se trata de programar… se trata de crear soluciones que generen impacto."</h4>
+                        <p class="text-white-50 mb-0 small">— Sebastián Sanmartín</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold"><span class="translate" data-es="Hablemos de tu proyecto" data-en="Let's talk about your project">Hablemos de tu proyecto</span></h2>
+                <p class="text-muted"><span class="translate" data-es="Cuéntame qué necesitas y veamos cómo puedo ayudarte" data-en="Tell me what you need and let's see how I can help you">Cuéntame qué necesitas y veamos cómo puedo ayudarte</span></p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="contact-card card border-0 shadow-sm h-100 overflow-hidden">
+                        <div class="contact-card-bg bg-gradient-1"></div>
+                        <div class="card-body position-relative pt-5 text-center">
+                            <div class="contact-icon mx-auto mb-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h5 class="fw-bold"><span class="translate" data-es="Email" data-en="Email">Email</span></h5>
+                            <p class="text-muted small"><span class="translate" data-es="Envíame tu consulta" data-en="Send me your inquiry">Envíame tu consulta</span></p>
+                            <a href="mailto:sebasanmartin456@gmail.com" class="btn btn-outline-primary rounded-pill px-4 mb-2"><span class="translate" data-es="Escribirme ahora" data-en="Write me now">Escribirme ahora</span></a>
+                            <br>
+                            <a href="mailto:aivra.digital@gmail.com" class="small text-muted text-decoration-none">o aivra.digital@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-5">
+                    <div class="contact-card card border-0 shadow-sm h-100 overflow-hidden">
+                        <div class="contact-card-bg bg-gradient-4"></div>
+                        <div class="card-body position-relative pt-5 text-center">
+                            <div class="contact-icon mx-auto mb-3">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <h5 class="fw-bold"><span class="translate" data-es="Redes Profesionales" data-en="Professional Networks">Redes Profesionales</span></h5>
+                            <p class="text-muted small"><span class="translate" data-es="Código y Trayectoria" data-en="Code and Trajectory">Código y Trayectoria</span></p>
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="https://github.com/sebasq5" target="_blank" class="btn btn-dark btn-sm px-3 py-2 rounded-pill">
+                                    <i class="fab fa-github me-2"></i>GitHub
+                                </a>
+                                <a href="https://www.linkedin.com/in/franklin-sanmartin-quiroz-17a6b2333/" target="_blank" class="btn btn-primary btn-sm px-3 py-2 rounded-pill">
+                                    <i class="fab fa-linkedin me-2"></i>LinkedIn
+                                </a>
+                                <a href="https://wa.me/0967888458" target="_blank" class="btn btn-success btn-sm px-3 py-2 rounded-pill">
+                                    <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: rgba(255,255,255,0.9); padding: 3rem 0;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                        <div class="brand-icon" style="width: 35px; height: 35px; background: linear-gradient(135deg, #2563eb, #06b6d4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: white;">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <span class="fw-bold" style="font-size: 1.1rem;">Sebastián Sanmartín</span>
+                    </div>
+                    <p class="small mt-2 mb-0" style="color: rgba(255,255,255,0.5);">Desarrollador & Automatizador</p>
+                </div>
+                <div class="col-md-4 text-center mb-3 mb-md-0">
+                    <p class="small fst-italic mb-0" style="color: rgba(255,255,255,0.6);">
+                        "No se trata de programar…<br>se trata de crear soluciones que generen impacto."
+                    </p>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <p class="small mb-0" style="color: rgba(255,255,255,0.4);">© 2026 — Todos los derechos reservados</p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-md-end mt-2">
+                        <a href="https://github.com/sebasq5" target="_blank" class="btn btn-sm" style="background: rgba(255,255,255,0.1); color: white; border-radius: 8px; padding: 6px 12px;">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/franklin-sanmartin-quiroz-17a6b2333/" target="_blank" class="btn btn-sm" style="background: rgba(255,255,255,0.1); color: white; border-radius: 8px; padding: 6px 12px;">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://wa.me/0967888458" target="_blank" class="btn btn-sm" style="background: rgba(255,255,255,0.1); color: white; border-radius: 8px; padding: 6px 12px;">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Cerrar menú móvil al hacer clic
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('navbarNav');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle: false});
+
+        navLinks.forEach((l) => {
+            l.addEventListener('click', () => {
+                if (window.innerWidth < 992) { // Solo en móvil
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // Efecto Navbar al hacer scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').classList.add('shadow-sm');
+            } else {
+                document.querySelector('.navbar').classList.remove('shadow-sm');
+            }
+        });
+
+        // Inicializar ScrollSpy
+        const scrollSpy = new bootstrap.ScrollSpy(document.body, {
+            target: '.navbar',
+            offset: 100
+        });
+    </script>
+</body>
+</html>
